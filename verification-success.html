@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verified - AI Teacher</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding-top: 50px;
+        }
+        .header {
+            padding: 20px 0;
+            text-align: center;
+            background-color: #f8f9fa;
+            margin-bottom: 30px;
+        }
+        .container {
+            max-width: 600px;
+        }
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background-color: #d4edda;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .success-icon svg {
+            width: 40px;
+            height: 40px;
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <h1>AI Teacher Platform</h1>
+            <p class="lead">Email Verification</p>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="card">
+            <div class="card-body text-center py-5">
+                <div class="success-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                </div>
+                <h2 class="mb-4">Email Successfully Verified!</h2>
+                <p class="mb-4">Your email has been verified. You can now log in to access the AI Teacher platform.</p>
+                <a href="login.html" class="btn btn-primary">Go to Login</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center mt-5 pb-3">
+        <p>&copy; 2025 WindowEdu. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="firebase-config.js"></script>
+    <script>
+        // This page is displayed after the user clicks the verification link in their email
+        // Firebase automatically handles the verification, so we just need to provide a nice UI
+        
+        // Check if the user is logged in
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                // User is signed in
+                console.log("User is signed in and verified.");
+            } else {
+                // No user is signed in - that's okay, they might have verified without being logged in
+                console.log("No user is currently signed in.");
+            }
+        });
+    </script>
+</body>
+</html>
