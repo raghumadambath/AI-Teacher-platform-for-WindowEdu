@@ -61,7 +61,7 @@
                     <div class="card-body text-center py-4">
                         <h3 class="card-title">Wast Knowledge</h3>
                         <p class="card-text">Explore our extensive knowledge resources.</p>
-                        <a href="https://vast-knowledge-resource.com" target="_blank" class="btn btn-success">Access Resources</a>
+                        <a href="https://chatgpt.com/g/g-67cc4e24b1488191ae072ea270a62730-my-psc-ai-mentor-windowedu" target="_blank" class="btn btn-success">Access Resources</a>
                     </div>
                 </div>
             </div>
@@ -137,27 +137,38 @@
     });
     
     // Access Module button
-    document.getElementById('accessModuleButton').addEventListener('click', function() {
-        const moduleNumber = document.getElementById('moduleNumber').value;
-        const statusMessage = document.getElementById('statusMessage');
-        
-        if (!moduleNumber) {
-            statusMessage.textContent = "Please select a module";
-            statusMessage.className = "alert alert-warning mt-3";
-            statusMessage.style.display = "block";
-            return;
-        }
-        
-        // For now, we'll just display which module was selected
-        // In a real implementation, you would redirect to the actual module URL
-        statusMessage.textContent = `You selected Module ${moduleNumber}. In a completed implementation, you would be redirected to the actual module content.`;
-        statusMessage.className = "alert alert-success mt-3";
+document.getElementById('accessModuleButton').addEventListener('click', function() {
+    const moduleNumber = document.getElementById('moduleNumber').value;
+    const statusMessage = document.getElementById('statusMessage');
+    
+    if (!moduleNumber) {
+        statusMessage.textContent = "Please select a module";
+        statusMessage.className = "alert alert-warning mt-3";
         statusMessage.style.display = "block";
-        
-        // Example of how you would redirect to the actual module
-        // window.location.href = `module${moduleNumber}.html`;
-        // Or: window.open(`https://example.com/modules/${moduleNumber}`, '_blank');
-    });
+        return;
+    }
+    
+    // Define module URLs
+    const moduleURLs = {
+        "1": "https://chatgpt.com/g/g-67cc4e24b1488191ae072ea270a62730-my-psc-ai-mentor-windowedu",
+        "2": "https://chatgpt.com/g/g-67cc4e24b1488191ae072ea270a62730-my-psc-ai-mentor-windowedu",
+        "3": "https://chatgpt.com/g/g-67cc4e24b1488191ae072ea270a62730-my-psc-ai-mentor-windowedu",
+        "4": "https://chatgpt.com/g/g-67cc4e24b1488191ae072ea270a62730-my-psc-ai-mentor-windowedu",
+        "5": "https://chatgpt.com/g/g-67cc4e24b1488191ae072ea270a62730-my-psc-ai-mentor-windowedu"
+    };
+    
+    // Get the URL for the selected module
+    const moduleURL = moduleURLs[moduleNumber];
+    
+    if (moduleURL) {
+        // Redirect to the module URL
+        window.open(moduleURL, '_blank');
+    } else {
+        statusMessage.textContent = "Module not found. Please select a valid module.";
+        statusMessage.className = "alert alert-warning mt-3";
+        statusMessage.style.display = "block";
+    }
+});
     
     // Logout functionality
     document.getElementById('logoutLink').addEventListener('click', function(e) {
