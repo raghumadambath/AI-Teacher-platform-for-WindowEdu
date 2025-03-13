@@ -86,16 +86,76 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // This is a placeholder for registration functionality
-        // We'll add the actual Firebase code in the next steps
-        document.getElementById('registrationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const statusMessage = document.getElementById('statusMessage');
-            statusMessage.textContent = "Registration functionality coming soon!";
-            statusMessage.className = "alert alert-info mt-3";
+   <script>
+    // Registration form submission
+    document.getElementById('registrationForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const fullName = document.getElementById('fullName').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        const statusMessage = document.getElementById('statusMessage');
+        
+        // Form validation
+        if (password !== confirmPassword) {
+            statusMessage.textContent = "Passwords do not match!";
+            statusMessage.className = "alert alert-danger mt-3";
             statusMessage.style.display = "block";
-        });
-    </script>
+            return;
+        }
+        
+        if (password.length < 8) {
+            statusMessage.textContent = "Password must be at least 8 characters long!";
+            statusMessage.className = "alert alert-danger mt-3";
+            statusMessage.style.display = "block";
+            return;
+        }
+        
+        // Show loading message
+        statusMessage.textContent = "Processing registration...";
+        statusMessage.className = "alert alert-info mt-3";
+        statusMessage.style.display = "block";
+        
+        // Create user with email and password
+        auth.createUserWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+                // Add user display name
+                return userCredential.user.updateProfile({
+                    displayName: fullName
+                });
+            })
+            .then(() => {
+                // Store additional user data (like phone number) if needed
+                // This would be done with a database, but for now we'll skip it
+                
+                // Send email verification
+                return auth.currentUser.sendEmailVerification();
+            })
+            .then(() => {
+                // Registration successful
+                statusMessage.textContent = "Registration successful! Please check your email to verify your account.";
+                statusMessage.className = "alert alert-success mt-3";
+                
+                // Clear the form
+                document.getElementById('registrationForm').reset();
+                
+                // Redirect to verification page or login after a delay
+                setTimeout(() => {
+                    window.location.href = "login.html";
+                }, 5000);
+            })
+            .catch((error) => {
+                // Handle errors
+                statusMessage.textContent = "Registration failed: " + error.message;
+                statusMessage.className = "alert alert-danger mt-3";
+            });
+    });
+</script>
+    <!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="firebase-config.js"></script>
 </body>
 </html>
