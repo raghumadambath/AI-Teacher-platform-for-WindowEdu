@@ -69,6 +69,17 @@
             margin-right: 0.5rem;
             font-weight: bold;
         }
+        .coming-soon-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
     </style>
 </head>
 <body>
@@ -318,5 +329,26 @@
                 });
         });
     </script>
+    <script>
+    // Mark unavailable modules
+    document.addEventListener('DOMContentLoaded', function() {
+        // Define available modules - only these modules will be shown as available
+        const availableModules = ["1", "2", "3", "4", "5"];
+        
+        // Check all module cards
+        document.querySelectorAll('.module-card').forEach(card => {
+            const moduleNumber = card.getAttribute('data-module');
+            
+            // If module is not in available list, mark as coming soon
+            if (!availableModules.includes(moduleNumber)) {
+                const badge = document.createElement('div');
+                badge.className = 'coming-soon-badge';
+                badge.textContent = 'Coming Soon';
+                card.appendChild(badge);
+                card.style.opacity = '0.7';
+            }
+        });
+    });
+</script>
 </body>
 </html>
