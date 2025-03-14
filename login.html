@@ -5,41 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - AI Teacher</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            padding-top: 50px;
-        }
-        .header {
-            padding: 20px 0;
-            text-align: center;
-            background-color: #f8f9fa;
-            margin-bottom: 30px;
-        }
-        .container {
-            max-width: 800px;
-        }
-        .form-container {
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 20px;
-            border-radius: 10px;
-            background-color: #f8f9fa;
-        }
-    </style>
+    <link href="styles.css" rel="stylesheet">
 </head>
 <body>
-    <div class="header">
-        <div class="container">
-            <h1>AI Teacher Platform</h1>
-            <p class="lead">Log in to WindowEdu's AI Teacher</p>
+    <!-- WindowEdu Header -->
+    <header class="windowedu-header">
+        <div class="header-container">
+            <div class="logo-container">
+                <img src="https://windowedu.in/wp-content/uploads/2023/04/window-edu-1.png" alt="WindowEdu Logo">
+                <h1>WindowEdu</h1>
+            </div>
+            <div class="platform-name">AI Teacher Platform</div>
         </div>
-    </div>
+    </header>
     
-    <div class="container">
-        <div class="form-container">
-            <h2 class="mb-4 text-center">Login</h2>
-            
+    <div class="container animated">
+        <h1 class="page-title">Login to Your Account</h1>
+        
+        <div class="form-container animated delay-1">
             <form id="loginForm">
                 <div class="mb-3">
                     <label for="email" class="form-label">Email Address</label>
@@ -65,123 +48,3 @@
                 </div>
                 
                 <p class="mt-3 text-center">
-                    Don't have an account? <a href="register.html">Register</a>
-                </p>
-            </form>
-            
-            <div id="statusMessage" class="alert mt-3" style="display: none;"></div>
-        </div>
-    </div>
-
-    <footer class="text-center mt-5 pb-3">
-        <p>&copy; 2025 WindowEdu. All rights reserved.</p>
-    </footer>
-
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    <script src="firebase-config.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <script>
-        // Login form submission
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const rememberMe = document.getElementById('rememberMe').checked;
-            const statusMessage = document.getElementById('statusMessage');
-            
-            // Form validation
-            if (!email || !password) {
-                statusMessage.textContent = "Please enter both email and password.";
-                statusMessage.className = "alert alert-warning mt-3";
-                statusMessage.style.display = "block";
-                return;
-            }
-            
-            // Show loading message
-            statusMessage.textContent = "Logging in...";
-            statusMessage.className = "alert alert-info mt-3";
-            statusMessage.style.display = "block";
-            
-            // Set persistence based on "Remember me" checkbox
-            const persistence = rememberMe ? 
-                firebase.auth.Auth.Persistence.LOCAL : 
-                firebase.auth.Auth.Persistence.SESSION;
-                
-            auth.setPersistence(persistence)
-                .then(() => {
-                    // Sign in with email and password
-                    return auth.signInWithEmailAndPassword(email, password);
-                })
-                .then((userCredential) => {
-                    // Check if email is verified
-                    if (!userCredential.user.emailVerified) {
-                        auth.signOut();
-                        statusMessage.textContent = "Please verify your email before logging in.";
-                        statusMessage.className = "alert alert-warning mt-3";
-                        return Promise.reject("Email not verified");
-                    }
-                    
-                    // Update verified status in Firestore
-                    return db.collection('users').doc(userCredential.user.uid).update({
-                        verified: true
-                    }).then(() => userCredential);
-                })
-                .then((userCredential) => {
-                    // Login successful
-                    statusMessage.textContent = "Login successful! Redirecting to dashboard...";
-                    statusMessage.className = "alert alert-success mt-3";
-                    
-                    // Redirect to dashboard
-                    setTimeout(() => {
-                        window.location.href = "dashboard.html";
-                    }, 1500);
-                })
-                .catch((error) => {
-                    // Handle errors
-                    let errorMessage = "Login failed: " + error.message;
-                    if (error === "Email not verified") {
-                        errorMessage = "Please verify your email before logging in.";
-                    }
-                    statusMessage.textContent = errorMessage;
-                    statusMessage.className = "alert alert-danger mt-3";
-                });
-        });
-        
-        // Forgot password functionality
-        document.getElementById('forgotPassword').addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const email = document.getElementById('email').value;
-            const statusMessage = document.getElementById('statusMessage');
-            
-            if (!email) {
-                statusMessage.textContent = "Please enter your email address.";
-                statusMessage.className = "alert alert-warning mt-3";
-                statusMessage.style.display = "block";
-                return;
-            }
-            
-            // Show loading message
-            statusMessage.textContent = "Sending password reset email...";
-            statusMessage.className = "alert alert-info mt-3";
-            statusMessage.style.display = "block";
-            
-            // Send password reset email
-            auth.sendPasswordResetEmail(email)
-                .then(() => {
-                    statusMessage.textContent = "Password reset email sent! Check your inbox.";
-                    statusMessage.className = "alert alert-success mt-3";
-                })
-                .catch((error) => {
-                    statusMessage.textContent = "Error: " + error.message;
-                    statusMessage.className = "alert alert-danger mt-3";
-                });
-        });
-    </script>
-</body>
-</html>
