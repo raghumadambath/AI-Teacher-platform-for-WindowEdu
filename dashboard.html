@@ -77,3 +77,243 @@
         <div class="header-container">
             <div class="logo-container">
                 <img src="https://windowedu.in/wp-content/uploads/2023/04/window-edu-1.png" alt="WindowEdu Logo">
+                <h1>WindowEdu</h1>
+            </div>
+            <div class="platform-name">AI Teacher Platform</div>
+        </div>
+    </header>
+    
+    <div class="container animated">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="page-title">Welcome, <span id="userName">Student</span></h1>
+            <a href="#" id="logoutLink" class="btn btn-outline-primary">Logout</a>
+        </div>
+        
+        <div class="row g-4 mb-5 animated delay-1">
+            <div class="col-md-6">
+                <div class="card feature-card">
+                    <div class="card-body text-center py-4">
+                        <div class="feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">WindowEdu Learning</h3>
+                        <p class="card-text">Access your approved learning modules tailored for your educational journey.</p>
+                        <button id="windowEduButton" class="btn btn-primary">Access Modules</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card feature-card">
+                    <div class="card-body text-center py-4">
+                        <div class="feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.25-14.75v1.5a.75.75 0 0 1-1.5 0v-1.5a.75.75 0 0 1 1.5 0zm0 10.5v1.5a.75.75 0 0 1-1.5 0v-1.5a.75.75 0 0 1 1.5 0zM2 8a.75.75 0 0 1 .75-.75h1.5a.75.75 0 0 1 0 1.5h-1.5A.75.75 0 0 1 2 8zm10.5 0a.75.75 0 0 1 .75-.75h1.5a.75.75 0 0 1 0 1.5h-1.5a.75.75 0 0 1-.75-.75zM4.59 4.59a.75.75 0 0 1 1.06 0l1.06 1.06a.75.75 0 1 1-1.06 1.06L4.59 5.65a.75.75 0 0 1 0-1.06zm6.36 6.36a.75.75 0 0 1 1.06 0l1.06 1.06a.75.75 0 1 1-1.06 1.06l-1.06-1.06a.75.75 0 0 1 0-1.06zm1.06-6.36a.75.75 0 1 1-1.06 1.06L9.89 4.59a.75.75 0 0 1 1.06-1.06l1.06 1.06zm-6.36 6.36a.75.75 0 1 1-1.06 1.06l-1.06-1.06a.75.75 0 0 1 1.06-1.06l1.06 1.06z"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Wast Knowledge</h3>
+                        <p class="card-text">Explore our extensive repository of knowledge resources to expand your horizons.</p>
+                        <a href="https://windowedu.in" target="_blank" class="btn btn-success">Access Resources</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Modern Module Selector (Hidden by default) -->
+        <div id="moduleSelector" class="module-selector animated delay-2">
+            <h4 class="text-center mb-4">Select a Learning Module</h4>
+            
+            <div class="row g-3">
+                <div class="col-md-6 col-lg-4">
+                    <div class="module-card" data-module="1">
+                        <span class="module-number">1</span>
+                        <span>Introduction Module</span>
+                        <p class="mt-2 mb-0 text-muted">Foundation concepts for beginners</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="module-card" data-module="2">
+                        <span class="module-number">2</span>
+                        <span>Core Principles</span>
+                        <p class="mt-2 mb-0 text-muted">Essential learning techniques</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="module-card" data-module="3">
+                        <span class="module-number">3</span>
+                        <span>Advanced Topics</span>
+                        <p class="mt-2 mb-0 text-muted">In-depth specialized content</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="module-card" data-module="4">
+                        <span class="module-number">4</span>
+                        <span>Practical Applications</span>
+                        <p class="mt-2 mb-0 text-muted">Real-world implementation</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="module-card" data-module="5">
+                        <span class="module-number">5</span>
+                        <span>Expert Strategies</span>
+                        <p class="mt-2 mb-0 text-muted">Advanced professional methods</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <input type="hidden" id="selectedModule" value="">
+                <button id="accessModuleButton" class="btn btn-primary">Access Selected Module</button>
+            </div>
+        </div>
+        
+        <!-- Status Messages -->
+        <div id="statusMessage" class="alert text-center mt-3" style="display: none;"></div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 WindowEdu. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Check if user is logged in
+        document.addEventListener('DOMContentLoaded', function() {
+            const statusMessage = document.getElementById('statusMessage');
+            
+            auth.onAuthStateChanged(function(user) {
+                if (user) {
+                    // User is signed in
+                    if (!user.emailVerified) {
+                        // Email not verified - redirect to login
+                        window.location.href = "login.html";
+                        return;
+                    }
+                    
+                    // Update welcome message with user's name
+                    document.getElementById('userName').textContent = user.displayName || 'Student';
+                    
+                    // Get user data from Firestore to check approval status
+                    db.collection('users').doc(user.uid).get()
+                        .then((doc) => {
+                            if (doc.exists && doc.data().approved) {
+                                // User is approved - WindowEdu button works normally
+                                console.log("User is approved for WindowEdu Learning");
+                            } else {
+                                // User is not approved - update WindowEdu button
+                                const windowEduButton = document.getElementById('windowEduButton');
+                                windowEduButton.textContent = "Request Access";
+                                windowEduButton.className = "btn btn-secondary";
+                                
+                                // Change button function to show contact message
+                                windowEduButton.addEventListener('click', function(e) {
+                                    e.preventDefault();
+                                    statusMessage.textContent = "Access to WindowEdu Learning modules requires approval. Please contact admin@windowedu.in to request access.";
+                                    statusMessage.className = "alert alert-info mt-3";
+                                    statusMessage.style.display = "block";
+                                }, { once: true });
+                            }
+                        })
+                        .catch((error) => {
+                            console.error("Error getting user data:", error);
+                        });
+                } else {
+                    // No user is signed in - redirect to login
+                    window.location.href = "login.html";
+                }
+            });
+        });
+        
+        // WindowEdu Learning button (for approved users)
+        document.getElementById('windowEduButton').addEventListener('click', function() {
+            // This will only run for approved users (unapproved users get a different handler)
+            document.getElementById('moduleSelector').style.display = 'block';
+            
+            // Scroll to the module selector
+            document.getElementById('moduleSelector').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+        
+        // Module card selection
+        document.addEventListener('DOMContentLoaded', function() {
+            const moduleCards = document.querySelectorAll('.module-card');
+            
+            moduleCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    // Remove selected class from all cards
+                    moduleCards.forEach(c => c.classList.remove('selected'));
+                    
+                    // Add selected class to clicked card
+                    this.classList.add('selected');
+                    
+                    // Update hidden input with selected module
+                    document.getElementById('selectedModule').value = this.getAttribute('data-module');
+                });
+            });
+        });
+        
+        // Access Module button
+        document.getElementById('accessModuleButton').addEventListener('click', function() {
+            const moduleNumber = document.getElementById('selectedModule').value;
+            const statusMessage = document.getElementById('statusMessage');
+            
+            if (!moduleNumber) {
+                statusMessage.textContent = "Please select a module";
+                statusMessage.className = "alert alert-warning mt-3";
+                statusMessage.style.display = "block";
+                return;
+            }
+            
+            // Define module URLs
+            const moduleURLs = {
+                "1": "https://windowedu.in/module1",
+                "2": "https://windowedu.in/module2",
+                "3": "https://windowedu.in/module3",
+                "4": "https://windowedu.in/module4",
+                "5": "https://windowedu.in/module5"
+            };
+            
+            // Get the URL for the selected module
+            const moduleURL = moduleURLs[moduleNumber];
+            
+            if (moduleURL) {
+                // Redirect to the module URL
+                window.open(moduleURL, '_blank');
+            } else {
+                statusMessage.textContent = "Module not found. Please select a valid module.";
+                statusMessage.className = "alert alert-warning mt-3";
+                statusMessage.style.display = "block";
+            }
+        });
+        
+        // Logout functionality
+        document.getElementById('logoutLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            auth.signOut()
+                .then(() => {
+                    // Sign-out successful - redirect to login
+                    window.location.href = "login.html";
+                })
+                .catch((error) => {
+                    // An error happened
+                    const statusMessage = document.getElementById('statusMessage');
+                    statusMessage.textContent = "Error signing out: " + error.message;
+                    statusMessage.className = "alert alert-danger mt-3";
+                    statusMessage.style.display = "block";
+                });
+        });
+    </script>
+</body>
+</html>
