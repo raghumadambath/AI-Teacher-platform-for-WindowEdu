@@ -5,48 +5,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel - AI Teacher</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            padding-top: 50px;
+        .admin-container {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            padding: 2rem;
+            margin-bottom: 2rem;
         }
-        .header {
-            padding: 20px 0;
-            text-align: center;
-            background-color: #f8f9fa;
-            margin-bottom: 30px;
-        }
-        .container {
-            max-width: 1200px;
-        }
+        
         .table-container {
             overflow-x: auto;
         }
+        
         .status-badge {
             display: inline-block;
             padding: 0.25em 0.6em;
             border-radius: 0.25rem;
+            font-weight: 500;
         }
+        
         .locked {
             display: none;
+        }
+        
+        .table {
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+        
+        .table thead th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 500;
+            border: none;
+        }
+        
+        .table tbody tr:hover {
+            background-color: rgba(0, 86, 179, 0.05);
+        }
+        
+        .table th:first-child,
+        .table td:first-child {
+            padding-left: 1.5rem;
+        }
+        
+        .approval-toggle {
+            transition: all 0.2s ease;
+        }
+        
+        .approval-toggle:hover {
+            transform: translateY(-2px);
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="container">
-            <h1>AI Teacher Admin Panel</h1>
-            <p class="lead">Manage users and approvals</p>
+    <!-- WindowEdu Header -->
+    <header class="windowedu-header">
+        <div class="header-container">
+            <div class="logo-container">
+                <img src="https://windowedu.in/wp-content/uploads/2023/04/window-edu-1.png" alt="WindowEdu Logo">
+                <h1>WindowEdu</h1>
+            </div>
+            <div class="platform-name">AI Teacher Platform</div>
         </div>
-    </div>
+    </header>
     
-    <div class="container">
+    <div class="container animated">
+        <h1 class="page-title">Admin Dashboard</h1>
+        
         <!-- Admin Login Section (shown by default) -->
-        <div id="adminLogin" class="row justify-content-center">
+        <div id="adminLogin" class="row justify-content-center animated delay-1">
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title mb-0">Admin Login</h4>
+                        <h4 class="card-title mb-0">Admin Access</h4>
                     </div>
                     <div class="card-body">
                         <form id="adminLoginForm">
@@ -69,37 +103,41 @@
         </div>
         
         <!-- User Management Section (hidden until admin logs in) -->
-        <div id="userManagement" class="locked">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2>User Management</h2>
-                <button id="logoutAdmin" class="btn btn-outline-danger">Logout</button>
-            </div>
-            
-            <div class="table-container">
-                <table class="table table-striped table-hover">
-                    <thead class="table-dark">
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Registration Date</th>
-                            <th>Email Verified</th>
-                            <th>Approved</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="userTableBody">
-                        <!-- User rows will be added here dynamically -->
-                    </tbody>
-                </table>
+        <div id="userManagement" class="locked animated">
+            <div class="admin-container">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 class="m-0">User Management</h2>
+                    <button id="logoutAdmin" class="btn btn-outline-danger">Logout</button>
+                </div>
+                
+                <div class="table-container">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Registration Date</th>
+                                <th>Email Verified</th>
+                                <th>Approved</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="userTableBody">
+                            <!-- User rows will be added here dynamically -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
             
             <div id="statusMessage" class="alert mt-4" style="display: none;"></div>
         </div>
     </div>
 
-    <footer class="text-center mt-5 pb-3">
-        <p>&copy; 2025 WindowEdu. All rights reserved.</p>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 WindowEdu. All rights reserved.</p>
+        </div>
     </footer>
 
     <!-- Firebase SDK -->
