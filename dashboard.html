@@ -278,16 +278,41 @@
         });
         
         // Access Module button
-        document.getElementById('accessModuleButton').addEventListener('click', function() {
-            const moduleNumber = document.getElementById('selectedModule').value;
-            const statusMessage = document.getElementById('statusMessage');
-            
-            if (!moduleNumber) {
-                statusMessage.textContent = "Please select a module";
-                statusMessage.className = "alert alert-warning mt-3";
-                statusMessage.style.display = "block";
-                return;
-            }
+       // Access Module button
+document.getElementById('accessModuleButton').addEventListener('click', function() {
+    const moduleNumber = document.getElementById('selectedModule').value;
+    const statusMessage = document.getElementById('statusMessage');
+    
+    if (!moduleNumber) {
+        statusMessage.textContent = "Please select a module";
+        statusMessage.className = "alert alert-warning mt-3";
+        statusMessage.style.display = "block";
+        return;
+    }
+    
+    // Define available modules
+    const availableModules = ["1", "2", "3", "4", "5"];
+    
+    // Check if the selected module is available
+    if (!availableModules.includes(moduleNumber)) {
+        statusMessage.textContent = "This module is coming soon! Our team is working hard to make it available.";
+        statusMessage.className = "alert alert-info mt-3";
+        statusMessage.style.display = "block";
+        return;
+    }
+    
+    // Get the URL for the selected module
+    const moduleURL = moduleURLs[moduleNumber];
+    
+    if (moduleURL) {
+        // Redirect to the module URL
+        window.open(moduleURL, '_blank');
+    } else {
+        statusMessage.textContent = "Module not found. Please select a valid module.";
+        statusMessage.className = "alert alert-warning mt-3";
+        statusMessage.style.display = "block";
+    }
+});
             
             // Define module URLs
             const moduleURLs = {
